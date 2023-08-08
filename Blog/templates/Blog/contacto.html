@@ -1,0 +1,24 @@
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+{% if titulo == 'awakelab' %}
+    <h1>{{titulo}}
+{% else %}
+    <h1>Pagina de contactos</h1>
+{% endif%}
+
+{% for message in messages %}
+<div class="alert alert-success" role="alert">
+    {{ message }}
+</div>
+{% endfor %}
+
+
+
+<form method= "POST">
+    {% csrf_token %}
+    {{formulario|crispy}}
+    <button type="Submit">Recibir datos</button>
+</form>
+{% endblock %}

@@ -1,0 +1,12 @@
+{% extends 'Blog/base.html' %}
+{% block contenido %}
+
+<form method="POST">
+    {% csrf_token %}
+    <h2>seguro que quiere obrrar {{object.titulo}}</h2>
+    {{form}}
+    <button type="submit">Borrar</button>
+</form>
+
+
+{% endblock %}

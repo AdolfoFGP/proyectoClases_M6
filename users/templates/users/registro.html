@@ -1,0 +1,20 @@
+{% extends "Blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+<div style="display:flex; justify-content:center; align-items:center;">
+    <form method="POST">
+        <div class="form-group">
+            {% csrf_token %}
+            {{formulario|crispy}}
+        </div>
+        <button type="submit" class="btn btn-success">Registrarse</button>
+    </form>
+    <div>
+        <small>
+            Ya tienes una cuenta? <a href="{% url 'login' %}">Log in</a>
+        </small>
+    </div>
+
+</div>
+{% endblock %}

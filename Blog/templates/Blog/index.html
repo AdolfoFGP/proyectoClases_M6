@@ -1,0 +1,29 @@
+{% extends 'Blog/base.html' %}
+
+
+{% block contenido %}
+    <h1>Nueva página principal </h1>
+
+
+    {% if messages %}
+        {% for i in messages %}
+            <div class="alert alert-success col-4 md-8" role="alert">
+                {{i}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+
+    {% for i in publicacionesLlave %}
+        <a href="{% url 'publicacion-detalle' i.id %}"></a><h2>{{i.titulo}}</h2>
+        <h2>{{i.autor}}</h2>
+        <p>{{i.contenido}}</p>
+        <a href="">{{i.fecha}}</a>
+
+        <a href="{% url 'publicacion-detalle' i.id %}">{{i.titulo}}</a>
+        <a href="{% url 'publicacion-actualizar' i.id %}">Actualiza publicacion</a>
+        <a style="color:red;" href="{% url 'publicacion-eliminar' i.id %}">Eliminar publicacion</a>
+        <a href="{% url 'crear-comentario' i.id %}">Crear comentario</a>
+        {% endfor %}
+
+{% endblock %}

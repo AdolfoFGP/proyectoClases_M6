@@ -1,0 +1,13 @@
+{% extends "Blog/base.html" %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+<div style="display:flex; justify-content:center; align-items:center;">
+    <h1>Se cerró la sesión de forma correcta!</h1>
+    <div>
+        <small>
+            Necesitas una cuenta? <a href="{% url 'registro' %}">Registrate</a>
+        </small>
+    </div>
+</div>
+{% endblock %}

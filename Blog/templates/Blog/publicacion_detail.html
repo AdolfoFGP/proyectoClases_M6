@@ -1,0 +1,14 @@
+{% extends 'Blog/base.html' %}
+
+
+{% block contenido %}
+
+<img class="rounded-circle account-img" src="{{object.autor.perfil.imagen.url}}" alt="no carga">
+
+<h2>{{object.titulo}}</h2>
+<h2>{{object.autor}}</h2>
+<p>{{object.contenido}}</p>
+<a href="">{{object.fecha}}</a>
+<a href="{% url 'crear-comentario' object.id %}">Crear comentario</a>
+
+{% endblock %}

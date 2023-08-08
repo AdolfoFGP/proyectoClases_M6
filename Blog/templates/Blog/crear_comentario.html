@@ -1,0 +1,57 @@
+
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+    <h2>Crear comentario</h2>
+    <form method="POST" id="formulario-comentario">
+        {% csrf_token %}
+        {{ formulario|crispy }}
+        <button type="submit">Comentar</button>
+    </form>
+
+    <div id="seccion-comentarios">
+        <!-- Aquí se mostrarán los comentarios -->
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $("#formulario-comentario").submit(function(event) {
+                event.preventDefault();
+
+                $.ajax({
+                    type: "POST",
+                    url: "{% url 'crear-comentario' publicacion_id %}",
+                    data: $(this).serialize(),
+                    dataType: "json",
+                    success: function(response) {
+                        var comentarioHtml = "<h2>" + response.autor + "</h2>";
+                        comentarioHtml += "<p>" + response.contenido + "</p>";
+                        comentarioHtml += "<a href=''>" + response.fecha + "</a>";
+
+                        $("#seccion-comentarios").append(comentarioHtml);
+                        $("#formulario-comentario")[0].reset();
+                    },
+                    error: function(xhr, status, error) {
+                        console.log("Error al enviar el comentario:", error);
+                    }
+                });
+            });
+        });
+    </script>
+{% endblock %}
+
+{% comment %}
+{% extends 'Blog/base.html' %}
+{% load crispy_forms_tags %}
+
+{% block contenido %}
+    <h2>Crear comentario</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ formulario|crispy}}
+        <button type="submit">Comentar</button>
+    </form>
+{% endblock %}
+{% endcomment %}

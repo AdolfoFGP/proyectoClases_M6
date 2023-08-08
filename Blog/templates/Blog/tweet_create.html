@@ -1,0 +1,10 @@
+{% extends 'Blog/base.html' %}
+{% block contenido %}
+
+<form method="POST">
+    {% csrf_token %} <!--Cross Site Request Forgery Protecction. Es para aplicar seguridad en django (?)-->
+    {{formulario.as_p}}
+    <button type="Submit">Ingresar</button>
+</form>
+
+{% endblock %}
